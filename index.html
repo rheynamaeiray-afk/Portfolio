@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Rheyna Mae Iray — 2nd Year BSIT Student. Aspiring Software Developer & UI/UX Designer." />
+  <title>Rheyna Mae Iray • Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='19' font-size='18'>💻</text></svg>">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-gradient: linear-gradient(165deg, #0a0a0f 0%, #0d0d1a 40%, #111120 100%);
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --cyan: #00e6d6;
+      --violet: #8b5cf6;
+      --pink: #ec4899;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 230, 214, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.03) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 80px 0;
+    }
+    .section-alt {
+      background: var(--bg-primary);
+    }
+    @media (max-width: 768px) {
+      .section { padding: 60px 0; }
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-brand {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: -0.5px;
+    }
+    .nav-brand span { color: var(--text-primary); }
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Fira Code', monospace;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .nav-menu a:hover {
+      color: var(--cyan);
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--cyan);
+      transition: width 0.25s ease;
+    }
+    .nav-menu a:hover::after { width: 100%; }
+    .nav-menu a.active { color: var(--cyan); }
+    .nav-menu a.active::after { width: 100%; }
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .mobile-menu-btn span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+
+    /* Glassmorphism */
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 230, 214, 0.08);
+    }
+    .glass-border {
+      border: 1px solid var(--glass-border);
+    }
+    .glow-border {
+      border-color: rgba(0, 230, 214, 0.3);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 60px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.2;
+      font-family: 'Inter', sans-serif;
+    }
+    .hero-text .highlight {
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-text .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      max-width: 580px;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: linear-gradient(135deg, rgba(0, 230, 214, 0.1), rgba(139, 92, 246, 0.1));
+      border: 1px solid rgba(0, 230, 214, 0.3);
+      border-radius: 24px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      color: var(--cyan);
+      font-family: 'Fira Code', monospace;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0, 230, 214, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 230, 214, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+    }
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+    }
+    .avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--cyan), var(--violet), var(--pink));
+      padding: 3px;
+      position: relative;
+    }
+    .avatar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 100%; height: 100%;
+      border-radius: 20px;
+      background: var(--bg-gradient);
+      z-index: 1;
+    }
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      z-index: 2;
+      position: relative;
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2ecc71, #00e6d6);
+      border: 2px solid var(--bg-primary);
+      z-index: 3;
+      box-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
+    }
+
+    /* ===== ABout ===== */
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    .section-title h2 .accent { color: var(--cyan); }
+    .section-title p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .about-text {
+      max-width: 700px;
+    }
+    .about-text p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
+    .about-text p strong { color: var(--cyan); }
+
+    /* About Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+    }
+    .stat-item .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      font-family: 'Fira Code', monospace;
+    }
+    .stat-item .label {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* ===== WHAT I DO ===== */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, rgba(0, 230, 214, 0.15), rgba(139, 92, 246, 0.15));
+      border: 1px solid rgba(0, 230, 214, 0.2);
+      transition: all 0.3s ease;
+    }
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+      border-color: var(--cyan);
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ===== EDUCATION ===== */
+    .education-card {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .edu-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .edu-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .edu-details h3 {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+    }
+    .edu-details .edu-meta {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-family: 'Fira Code', monospace;
+    }
+    .badge-status {
+      margin-left: auto;
+      background: rgba(46, 204, 113, 0.15);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      color: #2ecc71;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* ===== LEARNING JOURNEY TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--cyan), var(--violet));
+      left: 50%;
+      margin-left: -1px;
+    }
+    .timeline-item {
+      display: flex;
+      width: 100%;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .timeline-item:nth-child(odd) { text-align: right; }
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+      padding-right: calc(50% + 24px);
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: calc(50% + 24px);
+      padding-left: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--cyan);
+      border: 3px solid var(--bg-primary);
+      z-index: 10;
+      box-shadow: 0 0 12px rgba(0, 230, 214, 0.5);
+    }
+    .timeline-content {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      max-width: 440px;
+      backdrop-filter: blur(10px);
+    }
+    .timeline-content:hover {
+      border-color: var(--cyan);
+    }
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    .project-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+    .project-image {
+      height: 160px;
+      background: linear-gradient(135deg, rgba(0, 230, 214, 0.08), rgba(139, 92, 246, 0.08));
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--text-muted);
+    }
+    .project-image.placeholder-text {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .project-content {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    .project-header h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+    }
+    .project-category {
+      color: var(--cyan);
+      font-size: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      background: rgba(0, 230, 214, 0.1);
+      border: 1px solid rgba(0, 230, 214, 0.2);
+      border-radius: 8px;
+      padding: 4px 10px;
+    }
+    .project-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .tech-tag {
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: var(--violet);
+      font-size: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+    }
+    .project-actions .btn {
+      font-size: 0.85rem;
+      padding: 8px 18px;
+    }
+
+    /* ===== BEYOND THE CODE ===== */
+    .interests {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+    .interest-tag {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .interest-tag:hover {
+      background: rgba(0, 230, 214, 0.08);
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-2px);
+    }
+    .interest-tag.active {
+      background: rgba(0, 230, 214, 0.12);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* ===== CONTACT CTA ===== */
+    .contact-cta {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 50px 32px;
+    }
+    .contact-cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .contact-cta h2 .accent { color: var(--cyan); }
+    .contact-cta p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+    .contact-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ===== RESUME ===== */
+    .resume-bar {
+      text-align: center;
+      margin-top: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-family: 'Fira Code', monospace;
+    }
+    .footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .nav-menu { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .hero-text h1 { font-size: 2.2rem; }
+      .services { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+      .timeline::before { left: 30px; }
+      .timeline-item { text-align: left !important; }
+      .timeline-item .timeline-content { margin-left: 60px !important; padding-left: 0 !important; }
+      .timeline-dot { left: 30px !important; transform: translate(-50%, -50%); }
+      .contact-cta { padding: 32px 16px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .timeline::before { left: 30px; }
+      .timeline-item { text-align: left !important; }
+      .timeline-item .timeline-content { margin-left: 60px !important; padding-left: 0 !important; }
+      .timeline-item:nth-child(odd) .timeline-content { padding-left: 0; }
+      .timeline-item:nth-child(odd) .timeline-dot { left: 30px; }
+      .timeline-dot { left: 30px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <a href="#" class="nav-brand"><span style="color:var(--cyan)">{</span>rheyna<span style="color:var(--cyan)">}</span></a>
+    <ul class="nav-menu" id="nav-menu">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#design" class="nav-link">UI/UX</a>
+      <a href="#journey" class="nav-link">Journey</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </ul>
+    <button class="mobile-menu-btn" id="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>Hi, I'm <span class="highlight">Rheyna Mae Iray</span></h1>
+          <div class="subtitle">
+            2nd Year BSIT Student • Aspiring Software Developer &amp; UI/UX Designer. Building projects, learning through code, and improving one step at a time.
+          </div>
+          <div class="hero-badges">
+            <span class="badge">#100DaysOfCode</span>
+            <span class="badge">Learning In Public</span>
+            <span class="badge">Open to Opportunities</span>
+          </div>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Let's Connect</a>
+          </div>
+          <div class="hero-buttons" style="margin-top:16px;">
+            <a href="https://docs.google.com/document/d/1LRi9tkmoGnNq-CFKn1jFDyuarDN2DWtHSIvUj0faAOE/edit?usp=drivesdk" target="_blank" class="btn btn-outline btn-icon">
+              <span>📄</span>
+              <span>View Resume</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="avatar">
+            <div class="avatar-placeholder">👩‍💻</div>
+            <div class="status-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section section-alt" id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About <span class="accent">Me</span></h2>
+        <p>2nd Year BSIT Student • Aspiring Software Developer & UI/UX Designer</p>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <div class="about-text">
+          <p>I'm a second-year Information Technology student passionate about <strong>software development</strong>, <strong>web development</strong>, and <strong>UI/UX design</strong>. I enjoy solving problems through code and crafting interfaces that are both functional and intuitive.</p>
+          <p>My current projects include academic applications in C++, C#, and Java, a browser-based finance tracker, and a Figma mobile prototype. I learn best by building — so every project, no matter how small, is a step forward.</p>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="value">5+</div>
+              <div class="label">Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="value">7+</div>
+              <div class="label">Technologies</div>
+            </div>
+            <div class="stat-item">
+              <div class="value">1</div>
+              <div class="label">Year In</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT I DO ===== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>What <span class="accent">I Do</span></h2>
+        <p>Core areas of interest as a developing student developer</p>
+      </div>
+      <div class="services">
+        <div class="card service-card">
+          <div class="service-icon">💻</div>
+          <h3>Software Development</h3>
+          <p>Academic projects in C++, C#, and Java. Focused on clean logic, problem-solving, and object-oriented principles. Actively building and refining foundational programming skills.</p>
+        </div>
+        <div class="card service-card">
+          <div class="service-icon">🌐</div>
+          <h3>Web Development</h3>
+          <p>Crafting responsive, browser-based applications using HTML, CSS, and JavaScript. Currently exploring modern frameworks and clean, maintainable front-end patterns.</p>
+        </div>
+        <div class="card service-card">
+          <div class="service-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>Designing intuitive user experiences in Figma. Passionate about mobile interfaces, accessibility, and creating visual concepts that bridge form and function.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== */ -->
+  <section class="section section-alt" id="education">
+    <div class="container">
+      <div class="section-title">
+        <h2>Education</h2>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <div class="card education-card">
+          <div class="edu-header">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-details">
+              <h3>Bachelor of Science in Information Technology</h3>
+              <div class="edu-meta">St. John Paul II College of Davao • 2nd Year • Currently Studying</div>
+            </div>
+            <span class="badge-status">Active</span>
+          </div>
+          <div style="margin-top:16px; color:var(--text-muted); font-size:0.9rem; font-family:'Fira Code',monospace;">
+            Expected Graduation: [NEEDS VERIFICATION]
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEARNING JOURNEY ===== -->
+  <section class="section" id="journey">
+    <div class="container">
+      <div class="section-title">
+        <h2>Learning <span class="accent">Journey</span></h2>
+        <p>My development journey so far</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div style="font-size:0.8rem; color:var(--cyan); font-family:'Fira Code',monospace; margin-bottom:6px;">Step 1</div>
+            <h3 style="color:var(--text-primary); margin-bottom:6px; font-size:1.05rem;">Started IT Journey</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Began exploring the world of technology and programming as a computer science / IT student.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div style="font-size:0.8rem; color:var(--cyan); font-family:'Fira Code',monospace; margin-bottom:6px;">Step 2</div>
+            <h3 style="color:var(--text-primary); margin-bottom:6px; font-size:1.05rem;">Learned Programming</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Studied fundamental programming concepts in C++, C#, Java, and JavaScript through coursework.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div style="font-size:0.8rem; color:var(--cyan); font-family:'Fira Code',monospace; margin-bottom:6px;">Step 3</div>
+            <h3 style="color:var(--text-primary); margin-bottom:6px; font-size:1.05rem;">Built Academic Projects</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Created console applications, a Windows Forms app, and a browser-based finance tracker.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div style="font-size:0.8rem; color:var(--cyan); font-family:'Fira Code',monospace; margin-bottom:6px;">Step 4</div>
+            <h3 style="color:var(--text-primary); margin-bottom:6px; font-size:1.05rem;">Explored UI/UX Design</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Started designing mobile prototypes in Figma, focusing on intuitive interfaces and user flows.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div style="font-size:0.8rem; color:var(--cyan); font-family:'Fira Code',monospace; margin-bottom:6px;">Now</div>
+            <h3 style="color:var(--text-primary); margin-bottom:6px; font-size:1.05rem;">Currently Learning &amp; Building</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Continuously learning new technologies, refining my skills, and working on personal and academic projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== */ -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured <span class="accent">Projects</span></h2>
+        <p>A few projects I've built during my studies</p>
+      </div>
+      <div class="projects-grid">
+
+        <!-- Binary Calculator -->
+        <div class="project-card">
+          <div class="project-image">🧮</div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3>Binary Calculator</h3>
+              <span class="project-category">C++</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">Console App</span>
+            </div>
+            <div class="project-desc">A console-based binary calculator that converts binary input to decimal, performs arithmetic operations (addition, subtraction, multiplication, and division), and returns results in binary format. Includes input validation for malformed binary strings.</div>
+            <div class="project-actions">
+              <a href="[ADD LINK]" class="btn btn-outline" style="font-size:0.85rem; padding:8px 18px;">View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enrollment System -->
+        <div class="project-card">
+          <div class="project-image">🏫</div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3>Enrollment System</h3>
+              <span class="project-category">C#</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">Windows Forms</span>
+              <span class="tech-tag">Visual Studio</span>
+            </div>
+            <div class="project-desc">A Windows Forms application built with C# and Visual Studio. Simulates a student enrollment workflow with form-based input for student records, course selection, section assignment, and tuition fee calculation. Features basic CRUD operations on student records.</div>
+            <div class="project-actions">
+              <a href="[ADD LINK]" class="btn btn-outline" style="font-size:0.85rem; padding:8px 18px;">View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- S_MArt & GAs POS -->
+        <div class="project-card">
+          <div class="project-image">⛽</div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3>S_MArt &amp; GAs Station POS System</h3>
+              <span class="project-category">Java</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">OOP</span>
+              <span class="tech-tag">POS</span>
+            </div>
+            <div class="project-desc">A Java console application demonstrating OOP concepts for a gas station point-of-sale. Models entities like products, customers, transactions, and staff. Features product inventory display, transaction processing, discount computation, and a management menu. Uses classes, inheritance, encapsulation, and method overriding.</div>
+            <div class="project-actions">
+              <a href="[ADD LINK]" class="btn btn-outline" style="font-size:0.85rem; padding:8px 18px;">View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital Finance Buddy -->
+        <div class="project-card">
+          <div class="project-image">💰</div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3>Digital Finance Buddy</h3>
+              <span class="project-category">Web Dev</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-desc">A browser-based budget and expense tracker. Allows users to set a total budget, add expenses, calculate total expenses and remaining balance, display the expense list, and edit/delete entries. Includes basic input validation and dynamic UI updates via DOM manipulation.</div>
+            <div class="project-actions">
+              <a href="[ADD LINK]" class="btn btn-outline" style="font-size:0.85rem; padding:8px 18px;">View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- LookIT -->
+        <div class="project-card">
+          <div class="project-image">📱</div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3>LookIT — Mobile Prototype</h3>
+              <span class="project-category">Figma</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag">UI/UX</span>
+              <span class="tech-tag">Prototype</span>
+            </div>
+            <div class="project-desc">A mobile UI/UX prototype in Figma exploring a smart home security concept. Focuses on mobile interaction flows including live camera feeds, voice-activated controls, visitor/delivery handling, and a concept for AI-assisted voice interaction. Presented as a design prototype, not a released application.</div>
+            <div class="project-actions">
+              <a href="https://www.figma.com/design/bfEu2A1xMPCitWgEvMK8dS/Untitled" class="btn btn-outline" style="font-size:0.85rem; padding:8px 18px;">View Prototype</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== UI/UX DESIGN SECTION ===== */ -->
+  <section class="section" id="design">
+    <div class="container">
+      <div class="section-title">
+        <h2>UI/UX <span class="accent">Design</span></h2>
+        <p>Design work and prototypes</p>
+      </div>
+      <div style="max-width:700px; margin:0 auto;">
+        <div class="card" style="text-align:center; padding:40px;">
+          <div style="font-size:3rem; margin-bottom:16px;">📱</div>
+          <h3 style="color:var(--text-primary); margin-bottom:8px;">LookIT Mobile Prototype</h3>
+          <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.6; margin-bottom:16px;">
+            A mobile UI/UX prototype for a smart home security concept, designed in Figma. Explores voice interaction, visitor handling, and AI-assisted controls.
+          </p>
+          <a href="https://www.figma.com/design/bfEu2A1xMPCitWgEvMK8dS/Untitled" class="btn btn-outline">
+            View on Figma
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEYOND THE CODE ===== */ -->
+  <section class="section section-alt" id="interests">
+    <div class="container">
+      <div class="section-title">
+        <h2>Beyond the <span class="accent">Code</span></h2>
+        <p>Things that drive my curiosity</p>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <div class="interests">
+          <p style="text-align:center; color:var(--text-secondary); font-size:1rem;">
+            When I'm not debugging or designing, you'll find me exploring new frameworks, sketching interface ideas, or experimenting with creative side projects.
+          </p>
+          <div class="interests-list">
+            <span class="interest-tag active">Programming</span>
+            <span class="interest-tag active">UI/UX Design</span>
+            <span class="interest-tag">Web Development</span>
+            <span class="interest-tag">Learning New Tech</span>
+            <span class="interest-tag">Creative Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT CTA ===== */ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="card contact-cta">
+        <h2>Let’s <span class="accent">connect.</span></h2>
+        <p>Have an idea or want to collaborate?<br/>I'm open to new opportunities and always happy to chat with fellow learners.</p>
+        <div class="contact-buttons">
+          <a href="https://github.com/rheynamaeiray-afk" target="_blank" class="btn btn-primary btn-icon">
+            <span>🐙</span>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.facebook.com/share/19iWcR3BXw/" target="_blank" class="btn btn-outline btn-icon">
+            <span>📘</span>
+            <span>Facebook</span>
+          </a>
+          <a href="mailto:rheyna_iray@sjp2cd.edu.ph" class="btn btn-outline btn-icon">
+            <span>✉️</span>
+            <span>Email</span>
+          </a>
+        </div>
+        <div class="resume-bar">
+          <a href="https://docs.google.com/document/d/1LRi9tkmoGnNq-CFKn1jFDyuarDN2DWtHSIvUj0faAOE/edit?usp=drivesdk" target="_blank" class="btn btn-outline btn-icon">
+            <span>📄</span>
+            <span>View Resume</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== */ -->
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Rheyna Mae Iray • 2nd Year BSIT Student</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    mobileMenu.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Update active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function setActiveNav() {
+      let index = sections.length;
+
+      while (--index && window.scrollY + 120 < sections[index].offsetTop) {}
+      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks[index].classList.add('active');
+    }
+
+    setActiveNav();
+    window.addEventListener('scroll', setActiveNav);
+
+    // Smooth scroll offset for fixed navbar
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        document.querySelector('.navbar').style.borderBottom = '1px solid var(--glass-border)';
+      }
+    });
+  </script>
+</body>
+</html>

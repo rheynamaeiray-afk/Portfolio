@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Todo List</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    #todo-input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    #add-btn {
+      padding: 0.75rem 1.5rem;
+      background: #4a90d9;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    #add-btn:hover { background: #357abd; }
+    #todo-list { list-style: none; margin-top: 0.5rem; }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+    .todo-item:last-child { border-bottom: none; }
+    .todo-text {
+      flex: 1;
+      font-size: 1rem;
+      word-break: break-word;
+    }
+    .todo-text.completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .delete-btn:hover { background: #c0392b; }
+    .empty-msg {
+      text-align: center;
+      color: #999;
+      padding: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Todo List</h1>
+    <div class="input-row">
+      <input type="text" id="todo-input" placeholder="What needs to be done?" />
+      <button id="add-btn">Add</button>
+    </div>
+    <ul id="todo-list">
+      <li class="empty-msg">No tasks yet. Add one above!</li>
+    </ul>
+  </div>
+  <script>
+    const input = document.getElementById('todo-input');
+    const addBtn = document.getElementById('add-btn');
+    const list = document.getElementById('todo-list');
+    const emptyMsg = list.querySelector('.empty-msg');
+
+    function saveTodos() {
+      const items = [];
+      document.querySelectorAll('.todo-item').forEach(item => {
+        items.push({
+          text: item.querySelector('.todo-text').textContent,
+          completed: item.querySelector('.checkbox').checked
+        });
+      });
+      localStorage.setItem('todos', JSON.stringify(items));
+    }
+
+    function renderTodo(text, completed) {
+      const li = document.createElement('li');
+      li.className = 'todo-item';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.className = 'checkbox';
+      checkbox.checked = completed;
+      checkbox.addEventListener('change', () => {
+        txt.classList.toggle('completed', checkbox.checked);
+        saveTodos();
+        updateEmpty();
+      });
+
+      const txt = document.createElement('span');
+      txt.className = 'todo-text';
+      txt.textContent = text;
+      if (completed) txt.classList.add('completed');
+
+      const del = document.createElement('button');
+      del.className = 'delete-btn';
+      del.textContent = 'Delete';
+      del.addEventListener('click', () => {
+        li.remove();
+        saveTodos();
+        updateEmpty();
+      });
+
+      li.append(checkbox, txt, del);
+      list.appendChild(li);
+    }
+
+    function updateEmpty() {
+      const hasItems = list.children.length - 1 > 0;
+      emptyMsg.style.display = hasItems ? 'none' : 'block';
+    }
+
+    function addTodo() {
+      const text = input.value.trim();
+      if (!text) return;
+      renderTodo(text, false);
+      input.value = '';
+      saveTodos();
+      updateEmpty();
+    }
+
+    addBtn.addEventListener('click', addTodo);
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') addTodo();
+    });
+
+    function loadTodos() {
+      const items = JSON.parse(localStorage.getItem('todos') || '[]');
+      items.forEach(item => renderTodo(item.text, item.completed));
+      updateEmpty();
+    }
+
+    loadTodos();
+  </script>
+</body>
+</html>
